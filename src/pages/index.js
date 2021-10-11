@@ -138,7 +138,7 @@ export default function Home() {
               type="submit"
               className="w-full lg:w-40 bg-indigo-600 text-white rounded-lg p-2 hover:bg-indigo-500"
             >
-              Get Result
+              See Result
             </button>
           </div>
         </form>
