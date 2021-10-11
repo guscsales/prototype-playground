@@ -58,9 +58,9 @@ export default function Home() {
           <h2 className="text-3xl text-center">Arrays</h2>
         </div>
 
-        <div className="bg-gray-200 text-gray-300 text-center py-5 rounded-lg mb-10">
+        {/* <div className="bg-gray-200 text-gray-300 text-center py-5 rounded-lg mb-10">
           Advertisement
-        </div>
+        </div> */}
 
         <form onSubmit={formik.handleSubmit}>
           <div className="mb-4">
@@ -155,12 +155,12 @@ export default function Home() {
         </div>
 
         <div className="flex my-9">
+          {/* <div className="rounded-full bg-gray-800 w-2 h-2 mr-1" />
           <div className="rounded-full bg-gray-800 w-2 h-2 mr-1" />
-          <div className="rounded-full bg-gray-800 w-2 h-2 mr-1" />
-          <div className="rounded-full bg-gray-800 w-2 h-2 mr-1" />
+          <div className="rounded-full bg-gray-800 w-2 h-2 mr-1" /> */}
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <h3 className="text-2xl font-semibold mb-4">
             Learn more about the method{' '}
             <span className="text-indigo-600">
@@ -174,7 +174,7 @@ export default function Home() {
             and scrambled it to make a type specimen book. It has survived not
             only five centuries
           </p>
-        </div>
+        </div> */}
       </div>
     </>
   );
