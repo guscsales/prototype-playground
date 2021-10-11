@@ -64,7 +64,7 @@ export default function Home() {
 
         <form onSubmit={formik.handleSubmit}>
           <div className="mb-4">
-            <label className="text-xs font-semibold">Choose the method</label>
+            <label className="text-sm font-semibold">Choose the method</label>
             <br />
             <div className="grid gap-2 grid-cols-3 mt-3">
               {arrayMethods.map((methodMetadata) => (
@@ -88,7 +88,7 @@ export default function Home() {
           </div>
 
           <div className="mb-4">
-            <label className="text-xs font-semibold">Paste your array</label>
+            <label className="text-sm font-semibold">Paste your array</label>
             <br />
             <CodeEditor
               value={formik.values.value}
@@ -108,7 +108,7 @@ export default function Home() {
           </div>
 
           <div>
-            <label className="text-xs font-semibold">Callback function</label>
+            <label className="text-sm font-semibold">Callback function</label>
             <br />
             <div className="rounded-lg border border-gray-300 px-3 py-2">
               <span className="text-sm text-gray-400 pointer-events-none select-none">{`function(${arrayMethods
@@ -144,7 +144,7 @@ export default function Home() {
         </form>
 
         <div>
-          <label className="text-xs font-semibold">Result</label>
+          <label className="text-sm font-semibold">Result</label>
           <br />
           <pre className="w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-500 overflow-x-auto overflow-y-hidden ">
             {currentMethod.extraMessage && currentMethod.extraMessage}
@@ -154,7 +154,7 @@ export default function Home() {
           </pre>
         </div>
 
-        <div className="flex my-9">
+        <div className="flex my-7">
           {/* <div className="rounded-full bg-gray-800 w-2 h-2 mr-1" />
           <div className="rounded-full bg-gray-800 w-2 h-2 mr-1" />
           <div className="rounded-full bg-gray-800 w-2 h-2 mr-1" /> */}
