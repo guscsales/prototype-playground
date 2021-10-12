@@ -55,7 +55,7 @@ export default function Home() {
           <h1 className="text-4xl text-center mb-3 font-semibold">
             Prototype Playground
           </h1>
-          <h2 className="text-3xl text-center">Arrays</h2>
+          <h2 className="text-3xl text-center">Array</h2>
         </div>
 
         {/* <div className="bg-gray-200 text-gray-300 text-center py-5 rounded-lg mb-10">
