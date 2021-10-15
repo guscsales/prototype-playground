@@ -20,14 +20,23 @@ export default function Home() {
       callback: 'return element > 0',
     },
     onSubmit: ({ value, method, callback }) => {
-      const functionStructure = `${value}.${method}(function (${currentMethod.callbackParamsOrder.join(
-        ',',
-      )}) { ${callback} })`;
+      const callbackFunction = currentMethod.callbackParamsOrder
+        ? `function (${currentMethod.callbackParamsOrder.join(
+            ',',
+          )}) { ${callback} }`
+        : '';
+      window.value = value;
+
+      const functionStructure = `window.value = ${value}; window.value.${method}(${callbackFunction})`;
 
       let result;
 
       try {
         result = eval(functionStructure);
+
+        if (currentMethod.resultDifferentOfReturn) {
+          result = window.value;
+        }
       } catch (e) {
         result = e.message;
       }
@@ -76,7 +85,7 @@ export default function Home() {
                     formik.setFieldValue('method', methodMetadata.name);
                   }}
                   key={methodMetadata.name}
-                  className={`rounded-lg p-2 hover:bg-gray-400 hover:text-white ${
+                  className={`rounded-lg p-2 hover:bg-gray-400 hover:text-white transition-colors ${
                     methodMetadata.name === formik.values.method &&
                     'bg-gray-500 text-white pointer-events-none'
                   }`}
@@ -111,25 +120,34 @@ export default function Home() {
             <label className="text-sm font-semibold">Callback function</label>
             <br />
             <div className="rounded-lg border border-gray-300 px-3 py-2">
-              <span className="text-sm text-gray-400 pointer-events-none select-none">{`function(${arrayMethods
-                .find(({ name }) => name === formik.values.method)
-                .callbackParamsOrder.join(', ')}) {`}</span>
-              <br />
-              <CodeEditor
-                value={formik.values.callback}
-                language="js"
-                placeholder="e.g.: return element > 0"
-                onChange={(evn) =>
-                  formik.setFieldValue('callback', evn.target.value)
-                }
-                padding={16}
-                style={{
-                  fontSize: 14,
-                  fontFamily:
-                    'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-                }}
-              />
-              <span className="text-sm text-gray-400 pointer-events-none select-none">{`}`}</span>
+              {currentMethod.callbackParamsOrder ? (
+                <>
+                  <span className="text-sm text-gray-400 pointer-events-none select-none">{`function(${currentMethod.callbackParamsOrder.join(
+                    ', ',
+                  )}) {`}</span>
+                  <br />
+                  <CodeEditor
+                    value={formik.values.callback}
+                    language="js"
+                    placeholder="e.g.: return element > 0"
+                    onChange={(evn) =>
+                      formik.setFieldValue('callback', evn.target.value)
+                    }
+                    padding={16}
+                    style={{
+                      fontSize: 14,
+                      fontFamily:
+                        'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+                    }}
+                  />
+                  <span className="text-sm text-gray-400 pointer-events-none select-none">{`}`}</span>
+                </>
+              ) : (
+                <pre className="text-gray-500 overflow-x-auto overflow-y-hidden">
+                  There is no callback function for the method ".
+                  {currentMethod.name}()"
+                </pre>
+              )}
             </div>
           </div>
 
